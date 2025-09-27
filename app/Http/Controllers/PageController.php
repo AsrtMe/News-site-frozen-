@@ -16,7 +16,7 @@ class PageController extends Controller
 
     public function users()
     {
-        $users = ['Артем', 'Даур', 'Джони', 'Жангир'];
+        $users = ['Артем', 'Даур', 'Джони', 'Жангир', 'Расул'];
 
         return view('users', ['users' => $users]);
     }
