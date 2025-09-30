@@ -2,22 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;    
+use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function about()
+    public function profile()
     {
-        $name = "Артем";
-        $age = 18;
-
-        return view('about', ['name' => $name, 'age' => $age]);
+        return view('profile');
     }
 
-    public function users()
+    public function admin()
     {
-        $users = ['Артем', 'Даур', 'Джони', 'Жангир', 'Расул'];
-
-        return view('users', ['users' => $users]);
+        return view('admin');
     }
 }
