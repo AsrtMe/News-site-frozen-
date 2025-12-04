@@ -54,13 +54,6 @@ class AuthController extends Controller
         /** @var \App\Models\User $user */
         $user = Auth::user();
 
-        // Проверка подтверждённости email
-        if (!$user->email_verified_at) {
-            return response()->json([
-                'message' => 'Email не подтверждён'
-            ], 403);
-        }
-
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
