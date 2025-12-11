@@ -14,6 +14,7 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+<<<<<<< HEAD
             colors: {
                 navy: {
                     50: '#f3f6fb',
@@ -28,6 +29,8 @@ export default {
                     900: '#0b1726'
                 }
             },
+=======
+>>>>>>> dde27edcd07f2c1a2e776ab8904912a6d07c7709
         },
     },
 
