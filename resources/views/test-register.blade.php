@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Регистрация | Форум</title>
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Шрифты + Стили -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Michroma&family=Tektur:wght@400..900&display=swap');
+    body {
+      margin:0; padding:0; min-height:100vh;
+      background:url("{{ asset('images/3.jpg') }}") no-repeat center center fixed;
+      background-size:cover; font-family:"Tektur",sans-serif; color:#e0e0e0;
+    }
+    body::before {content:"";position:fixed;top:0;left:0;width:100%;height:100%;
+      background:rgba(0,0,0,0.7);z-index:-1;}
+    nav{background:#111!important;box-shadow:0 4px 10px rgba(0,0,0,0.6);}
+    .logo{height:80px;margin-right:12px;position:relative;top:-10px;}
+    .box{height:180px;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,#232526,#414345);box-shadow:0 4px 12px rgba(0,0,0,0.6);}
+    .box h1{font-size:2.8rem;font-weight:bold;color:#fff;text-shadow:2px 2px 10px rgba(0,0,0,0.8);letter-spacing:2px;}
+    .registration-container{max-width:500px;margin:40px auto;padding:2rem;
+      background:rgba(30,30,30,0.9);border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.6);}
+    .registration-container h2{color:#66ccff;font-size:1.8rem;margin-bottom:1.5rem;
+      text-align:center;border-bottom:3px solid #3498db;padding-bottom:.5rem;}
+    .form-group{margin-bottom:1.2rem;}
+    .form-group label{margin-bottom:.5rem;color:#ccc;font-weight:500;}
+    .form-control{background:#111;border:1px solid #444;color:#fff;border-radius:8px;}
+    .form-control:focus{border-color:#3498db;box-shadow:0 0 0 2px rgba(52,152,219,0.3);}
+    .btn-register{width:100%;margin-top:1rem;padding:12px;border-radius:8px;
+      font-size:1.1rem;font-weight:500;color:#e0e0e0;
+      background:linear-gradient(135deg,#1e1e2f,#2c2c44);border:1px solid #3a3a5c;
+      box-shadow:0 0 10px rgba(0,150,255,0.3);transition:.3s;}
+    .btn-register:hover{background:linear-gradient(135deg,#2c2c44,#1e1e2f);box-shadow:0 0 15px rgba(0,150,255,0.6);color:#fff;}
+    .login-link{text-align:center;margin-top:1.5rem;color:#ccc;}
+    .login-link a{color:#66ccff;text-decoration:none;}
+    .login-link a:hover{color:#99ddff;text-decoration:underline;}
+    .form-footer{margin-top:1.5rem;padding-top:1rem;border-top:1px solid #444;text-align:center;font-size:.9rem;color:#999;}
+    footer{background:#111;color:#bbb;padding:20px;text-align:center;box-shadow:0 -4px 12px rgba(0,0,0,0.7);}
+    footer p{margin-top:0;color:#888;}
+    .error-message{color:#ff6b6b;font-size:.85rem;margin-top:.3rem;display:none;}
+    .success-message{display:none;background:rgba(46,204,113,0.2);border:1px solid #2ecc71;
+      color:#2ecc71;padding:1rem;border-radius:8px;margin-top:1rem;text-align:center;}
+  </style>
+</head>
+<body>
+
+  <!-- Навбар -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="{{ url('/') }}">
+        <img src="{{ asset('images/logo.png') }}" alt="Лого" class="logo">
+        BulBul
+      </a>
+    </div>
+  </nav>
+
+  <!-- Заголовок -->
+  <div class="box">
+    <h1>Регистрация</h1>
+  </div>
+
+  <!-- Форма -->
+  <div class="registration-container">
+    <h2>Создайте аккаунт</h2>
+    <form id="registrationForm" method="POST" action="{{ route('register') }}">
+      @csrf
+
+      <div class="form-group">
+        <label for="username">Имя пользователя</label>
+        <input type="text" name="name" id="username" class="form-control" value="{{ old('name') }}" required>
+        <div class="error-message" id="usernameError">Имя пользователя должно содержать от 3 до 20 символов</div>
+        @error('name') <div class="error-message" style="display:block">{{ $message }}</div> @enderror
+      </div>
+
+      <div class="form-group">
+        <label for="email">Электронная почта</label>
+        <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}" required>
+        <div class="error-message" id="emailError">Введите корректный email адрес</div>
+        @error('email') <div class="error-message" style="display:block">{{ $message }}</div> @enderror
+      </div>
+
+      <div class="form-group">
+        <label for="password">Пароль</label>
+        <input type="password" name="password" id="password" class="form-control" required>
+        <div class="error-message" id="passwordError">Пароль должен содержать не менее 8 символов</div>
+        @error('password') <div class="error-message" style="display:block">{{ $message }}</div> @enderror
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Подтвердите пароль</label>
+        <input type="password" name="password_confirmation" id="confirmPassword" class="form-control" required>
+        <div class="error-message" id="confirmPasswordError">Пароли не совпадают</div>
+      </div>
+
+      <button type="submit" class="btn-register">Зарегистрироваться</button>
+      <div class="success-message" id="successMessage">
+        Регистрация прошла успешно! Теперь вы можете войти в систему.
+      </div>
+    </form>
+
+    <div class="login-link">
+      Уже есть аккаунт? <a href="{{ route('login') }}">Войдите здесь</a>
+    </div>
+
+    <div class="form-footer">
+      Регистрируясь, вы соглашаетесь с нашими условиями использования и политикой конфиденциальности.
+    </div>
+  </div>
+
+  <!-- Футер -->
+  <footer>
+    <p>© 2025 Мой форум | Сделано с ❤️</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- JS-валидация -->
+  <script>
+    const form = document.getElementById("registrationForm");
+    const username = document.getElementById("username");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirmPassword");
+
+    const usernameError = document.getElementById("usernameError");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+    const confirmPasswordError = document.getElementById("confirmPasswordError");
+    const successMessage = document.getElementById("successMessage");
+
+    form.addEventListener("submit", function (e) {
+      let valid = true;
+
+      // Проверка имени
+      if (username.value.length < 3 || username.value.length > 20) {
+        usernameError.style.display = "block";
+        valid = false;
+      } else {
+        usernameError.style.display = "none";
+      }
+
+      // Проверка пароля
+      if (password.value.length < 8) {
+        passwordError.style.display = "block";
+        valid = false;
+      } else {
+        passwordError.style.display = "none";
+      }
+
+      // Проверка совпадения паролей
+      if (password.value !== confirmPassword.value) {
+        confirmPasswordError.style.display = "block";
+        valid = false;
+      } else {
+        confirmPasswordError.style.display = "none";
+      }
+
+      if (!valid) {
+        e.preventDefault(); // не отправляем на сервер
+      } else {
+        successMessage.style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>
