@@ -13,6 +13,26 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+<<<<<<< HEAD
+    </head>
+    <body class="font-sans antialiased site-bg-image text-navy-100">
+        <div class="min-h-screen site-content-wrapper flex flex-col">
+            @include('layouts.navigation')
+
+            <!-- Page Content -->
+            <main class="flex-1">
+                @yield('content')
+            </main>
+        </div>
+
+        {{-- AlpineJS --}}
+        <script src="//unpkg.com/alpinejs" defer></script>
+        {{-- FontAwesome --}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+        {{-- Inline scripts pushed from views --}}
+        @stack('scripts')
+=======
         
     </head>
     <body class="font-sans antialiased">
@@ -33,5 +53,6 @@
                 {{ $slot }}
             </main>
         </div>
+>>>>>>> dde27edcd07f2c1a2e776ab8904912a6d07c7709
     </body>
 </html>
