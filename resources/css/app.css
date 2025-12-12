@@ -1,3 +1,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+<<<<<<< HEAD
+
+/* --- Site background: uses custom image if placed in public/images/forum-bg.jpg --- */
+:root{
+	--site-bg-overlay: rgba(6,10,26,0.55);
+}
+
+body {
+	/* fallback dark gradient */
+	background-color: #0b1220;
+	background-image: radial-gradient(circle at 10% 10%, rgba(40,48,76,0.14), transparent 15%),
+										linear-gradient(180deg, rgba(10,16,28,1) 0%, rgba(12,18,30,1) 100%);
+	background-attachment: fixed;
+	background-size: cover;
+	background-repeat: no-repeat;
+	color-scheme: dark;
+}
+
+/* If a custom background image exists in public/images/forum-bg.jpg — overlay it with a subtle vignette */
+@layer utilities {
+	.site-bg-image {
+		background-image: url('/images/forum-bg.jpg'), radial-gradient(circle at 10% 10%, rgba(40,48,76,0.14), transparent 15%), linear-gradient(180deg, rgba(10,16,28,0.85), rgba(12,18,30,0.95));
+		background-size: cover, cover, cover;
+		background-position: center, left top, center;
+		background-attachment: fixed, fixed, fixed;
+	}
+}
+
+/* Ensure main containers remain readable */
+.site-content-wrapper {
+	background: transparent;
+}
+
+/* Slight card lift to contrast with background */
+.card-contrast {
+	background-color: rgba(6,10,26,0.78);
+	box-shadow: 0 10px 20px rgba(2,6,23,0.45);
+	border: 1px solid rgba(255,255,255,0.02);
+}
+=======
+>>>>>>> dde27edcd07f2c1a2e776ab8904912a6d07c7709

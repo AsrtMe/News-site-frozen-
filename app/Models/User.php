@@ -2,15 +2,28 @@
 
 namespace App\Models;
 
+// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasApiTokens, HasFactory, Notifiable;
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -45,4 +58,21 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Получить или создать гостевого пользователя (используется для анонимных комментариев)
+     *
+     * @return self
+     */
+    public static function guest(): self
+    {
+        return static::firstOrCreate(
+            ['email' => 'guest@forum.local'],
+            [
+                'name' => 'Гость',
+                'password' => Hash::make(Str::random(40)),
+            ]
+        );
+    }
 }
+
