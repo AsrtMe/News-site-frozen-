@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -17,6 +16,7 @@ class AdminController extends Controller
     public function users()
     {
         $users = User::all();
+
         return view('admin.users', compact('users'));
     }
 
@@ -24,6 +24,7 @@ class AdminController extends Controller
     public function block(User $user)
     {
         $user->update(['is_active' => false]);
+
         return back()->with('success', 'Пользователь заблокирован');
     }
 
@@ -31,6 +32,7 @@ class AdminController extends Controller
     public function unblock(User $user)
     {
         $user->update(['is_active' => true]);
+
         return back()->with('success', 'Пользователь разблокирован');
     }
 
@@ -38,6 +40,7 @@ class AdminController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
         return back()->with('success', 'Пользователь удалён');
     }
 }

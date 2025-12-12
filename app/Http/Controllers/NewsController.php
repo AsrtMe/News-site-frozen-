@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class NewsController extends Controller
@@ -12,10 +11,10 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $firebaseUrl = rtrim(config('services.firebase.url'), '/') . '/';
+        $firebaseUrl = rtrim(config('services.firebase.url'), '/').'/';
 
         // Читаем данные: /news.json
-        $response = Http::get($firebaseUrl . 'news.json');
+        $response = Http::get($firebaseUrl.'news.json');
 
         if (! $response->ok()) {
             return response()->json([

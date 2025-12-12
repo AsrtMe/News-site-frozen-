@@ -1,16 +1,11 @@
 <?php
 
-<<<<<<< HEAD
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\AdminController;
 
 // Главная страница и dashboard
 Route::get('/', function () {
@@ -50,10 +45,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-=======
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -83,4 +74,3 @@ Route::get('/test-register', function () {
 });
 
 Route::post('/test-register', [RegisteredUserController::class, 'store']);
->>>>>>> dde27edcd07f2c1a2e776ab8904912a6d07c7709

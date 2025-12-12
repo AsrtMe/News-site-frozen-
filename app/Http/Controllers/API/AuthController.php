@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 
-class AuthController extends Controller 
+class AuthController extends Controller
 {
     // Регистрация через email (API)
     public function register(Request $request)
@@ -33,7 +33,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'user' => $user
+            'user' => $user,
         ], 201);
     }
 
@@ -42,12 +42,12 @@ class AuthController extends Controller
     {
         $credentials = $request->validate([
             'email' => 'required|email',
-            'password' => 'required|string'
+            'password' => 'required|string',
         ]);
 
-        if (!Auth::attempt($credentials)) {
+        if (! Auth::attempt($credentials)) {
             return response()->json([
-                'message' => 'Неверный email или пароль'
+                'message' => 'Неверный email или пароль',
             ], 401);
         }
 
@@ -59,7 +59,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
@@ -81,12 +81,12 @@ class AuthController extends Controller
     public function googleLogin(Request $request)
     {
         $request->validate([
-            'id_token' => 'required'
+            'id_token' => 'required',
         ]);
 
         // Проверяем токен у Google
         $googleResponse = Http::get('https://oauth2.googleapis.com/tokeninfo', [
-            'id_token' => $request->id_token
+            'id_token' => $request->id_token,
         ]);
 
         if ($googleResponse->failed()) {
@@ -96,7 +96,7 @@ class AuthController extends Controller
         $googleData = $googleResponse->json();
         $email = $googleData['email'] ?? null;
 
-        if (!$email) {
+        if (! $email) {
             return response()->json(['error' => 'Google аккаунт не содержит email'], 400);
         }
 
@@ -115,7 +115,7 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'user' => $user
+            'user' => $user,
         ]);
     }
 }

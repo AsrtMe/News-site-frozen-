@@ -1,8 +1,8 @@
 <?php
 
 return [
+    'default' => env('FILESYSTEM_DISK', 'local'),
 
-<<<<<<< HEAD
     /*
     |--------------------------------------------------------------------------
     | Default Filesystem Disk
@@ -28,14 +28,6 @@ return [
     | Supported drivers: "local", "ftp", "sftp", "s3"
     |
     */
-=======
-   
-
-    'default' => env('FILESYSTEM_DISK', 'local'),
-
-   
->>>>>>> dde27edcd07f2c1a2e776ab8904912a6d07c7709
-
     'disks' => [
 
         'local' => [
