@@ -21,10 +21,7 @@
         <env name="APP_ENV" value="testing"/>
         <env name="APP_MAINTENANCE_DRIVER" value="file"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
-<<<<<<< HEAD
         <env name="BROADCAST_CONNECTION" value="null"/>
-=======
->>>>>>> dde27edcd07f2c1a2e776ab8904912a6d07c7709
         <env name="CACHE_STORE" value="array"/>
         <env name="DB_CONNECTION" value="sqlite"/>
         <env name="DB_DATABASE" value=":memory:"/>

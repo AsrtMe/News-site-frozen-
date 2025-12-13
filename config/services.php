@@ -15,19 +15,11 @@ return [
     */
 
     'postmark' => [
-<<<<<<< HEAD
         'key' => env('POSTMARK_API_KEY'),
     ],
 
     'resend' => [
         'key' => env('RESEND_API_KEY'),
-=======
-        'token' => env('POSTMARK_TOKEN'),
-    ],
-
-    'resend' => [
-        'key' => env('RESEND_KEY'),
->>>>>>> dde27edcd07f2c1a2e776ab8904912a6d07c7709
     ],
 
     'ses' => [
@@ -43,13 +35,10 @@ return [
         ],
     ],
 
-<<<<<<< HEAD
-=======
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => env('GOOGLE_REDIRECT'),
     ],
 
->>>>>>> dde27edcd07f2c1a2e776ab8904912a6d07c7709
 ];
