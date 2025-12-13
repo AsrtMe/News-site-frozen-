@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-<<<<<<< HEAD
 
 /* --- Site background: uses custom image if placed in public/images/forum-bg.jpg --- */
 :root{
@@ -40,5 +39,3 @@ body {
 	box-shadow: 0 10px 20px rgba(2,6,23,0.45);
 	border: 1px solid rgba(255,255,255,0.02);
 }
-=======
->>>>>>> dde27edcd07f2c1a2e776ab8904912a6d07c7709

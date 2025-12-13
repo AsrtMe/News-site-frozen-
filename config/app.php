@@ -123,8 +123,6 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-<<<<<<< HEAD
-=======
     'providers' => [
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
@@ -160,5 +158,4 @@ return [
         App\Providers\RouteServiceProvider::class,
     ],
 
->>>>>>> dde27edcd07f2c1a2e776ab8904912a6d07c7709
 ];
